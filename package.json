@@ -1,7 +1,7 @@
 {
-  "name": "social-network-server",
+  "name": "EasyRestaurant-Backend",
   "version": "1.0.0",
-  "description": "server for social network project",
+  "description": "backend for easyRestaurant-Backend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/13luismb/social-network-server.git"
+    "url": "git+https://github.com/luisedo97/EasyRestaurant-Backend"
   },
-  "author": "Luis Acurero, Luis Araujo, Elvis Araujo",
+  "author": "Luis Araujo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/13luismb/social-network-server/issues"
+    "url": "https://github.com/luisedo97/EasyRestaurant-Backend/issues"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -35,5 +35,5 @@
   "devDependencies": {
     "nodemon": "^1.18.6"
   },
-  "homepage": "https://github.com/13luismb/social-network-server#readme"
+  "homepage": "https://github.com/luisedo97/EasyRestaurant-Backend"
 }
