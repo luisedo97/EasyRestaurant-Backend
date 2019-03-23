@@ -5,8 +5,8 @@ const sql = require('./queries.js');
 module.exports.getUserByUsername = (username) => {
     return new Promise((res, rej) => {
         db.connect().then((obj) => {
-            obj.one(sql.getUser, [username]).then((data) => {
-                res(data);
+            obj.any(sql.getUser, [username]).then((data) => {
+                res(data[0]);
                 obj.done();
             }).catch((error) => {
                 console.log('que esta pasando');

@@ -12,10 +12,14 @@ module.exports.localStrategy = new localStrategy({
         if (user.error) {
             return done(null, false);
         }
+        
+        console.log("Password:"+password);
+        console.log("Password userpassword"+user.user_password);
+
         User.comparePassword(password, user.user_password).then((isMatch) => {
-            if (isMatch)
+            if (isMatch){
                 return done(null, user);
-            else {
+            } else {
                 return done(null, false);
             }
 
@@ -23,6 +27,7 @@ module.exports.localStrategy = new localStrategy({
             console.log(err);
             return done(null, false);
         });
+
     }).catch((err) => {
         return done(null, false);
     });

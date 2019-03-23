@@ -1,14 +1,11 @@
 const express = require('express');
 let router = express.Router();
 let bcrypt = require('bcryptjs');
-const User = require('./../helpers/users');
+const Recipe = require('./../helpers/recipe');
 
-router.post('', (req, res) => {
-    User.registerUser(req.body.username,
-            bcrypt.hashSync(req.body.password, 10),
-            req.body.name,
-            req.body.lastname,
-            req.body.type)
+router.get('/:recipe_id', (req, res) => {
+    //console.log(req.params.recipe_id);
+    Recipe.getRecipeById(req.params.recipe_id)
         .then((data) => {
             res.send(data);
         })
@@ -16,5 +13,6 @@ router.post('', (req, res) => {
             res.send(JSON.stringify(err));
         })
 });
+
 
 module.exports = router;
