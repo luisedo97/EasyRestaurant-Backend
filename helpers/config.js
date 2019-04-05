@@ -1,7 +1,7 @@
 const config = {
-    dbUrl:'postgres://postgres:masterkey@localhost:5432/easy-restaurant',
+    dbUrl:'postgres://postgres:masterkey@localhost:5432/la comelona',
     port: 3001,
-    secret: 'Vu1Kn0',
+    secret: 'masterkey',
 }
 
 module.exports = config;
