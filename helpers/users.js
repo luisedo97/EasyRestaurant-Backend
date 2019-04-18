@@ -9,7 +9,6 @@ module.exports.getUserByUsername = (username) => {
                 res(data[0]);
                 obj.done();
             }).catch((error) => {
-                console.log('que esta pasando');
                 console.log(error);
                 rej(error);
                 obj.done();
