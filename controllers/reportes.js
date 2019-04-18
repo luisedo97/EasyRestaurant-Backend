@@ -5,7 +5,7 @@ const reportes = require('./../helpers/reportes');
 
 
 router.get('', (req, res) => {
-    reportes.newReport(req.query.dateFrom, req.query.dateTo)
+    reportes.newReport(req.query.dateFrom, req.query.dateTo, req.query.name)
         .then((data) => {
             res.send(data);
         })
