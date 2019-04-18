@@ -21,6 +21,38 @@ module.exports.getRecipeById = (recipe_id) => {
     });
 }
 
+module.exports.insertRecipe = async d => {
+    try{
+        r = await db.one(sql.newRecipe,[d.text,d.title,d.time,d.price,d.type]);
+        d.ingredents.forEach(async ingredent =>{
+            await db.none(sql.addIngredentRecipe,[r.recipe_id,ingredent.id,ingredent.measure]);
+        });
+        return r.recipe_id;
+    }catch(error){
+        console.log(error);
+        throw Error(error); 
+    }
+}
+
+module.exports.updateRecipe = async d => {
+    try{
+        return await db.none(sql.updateRecipe,[d.id,d.text,d.title,d.time,d.price,d.type]);
+    }catch(error){
+        console.log(error);
+        throw Error(error); 
+    }
+}
+
+module.exports.deleteRecipe = async d => {
+    try{
+        return await db.none(sql.deleteRecipe,d.id);
+    }catch(error){
+        console.log(error);
+        throw Error(error); 
+    }
+}
+
+
 clearJSONRecipe = (data)=>{
     let res = {
         recipe_title: data[0].recipe_title,
