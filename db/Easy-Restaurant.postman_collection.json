@@ -121,6 +121,96 @@
 			"response": []
 		},
 		{
+			"name": "Insert recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"Sppaggethi con atuncito\",\n\t\"title\":\"Sppaggethi con atuncito\",\n\t\"time\":\"15min\",\n\t\"price\":200,\n\t\"type\":1,\n\t\"ingredents\":[{\"id\":3,\"measure\":\"250g\"},{\"id\":9,\"measure\":\"100g\"}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/recipe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update recipe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"Sppaggethi con Atun\",\n\t\"title\":\"Sppaggethi con Atun\",\n\t\"time\":\"5min\",\n\t\"price\":160,\n\t\"type\":1,\n\t\"id\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/recipe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete recipe",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/recipe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Menu",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -141,6 +231,31 @@
 					"port": "3001",
 					"path": [
 						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Recipe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/recipe/search/Pas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"recipe",
+						"search",
+						"Pas"
 					]
 				}
 			},
