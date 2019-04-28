@@ -43,9 +43,18 @@ module.exports.updateRecipe = async d => {
     }
 }
 
-module.exports.deleteRecipe = async d => {
+module.exports.deleteRecipe = async id => {
     try{
-        return await db.none(sql.deleteRecipe,d.id);
+        return await db.none(sql.deleteRecipe,id);
+    }catch(error){
+        console.log(error);
+        throw Error(error); 
+    }
+}
+
+module.exports.getRecipeByText = async text => {
+    try{
+        return await db.any(sql.getRecipeSimple,text);
     }catch(error){
         console.log(error);
         throw Error(error); 

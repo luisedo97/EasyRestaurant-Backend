@@ -8,7 +8,7 @@ let queries = {
   getIngredients: new PS('get-ingredients', "SELECT * FROM ingredent"),
   updateIngredient: new PS('update-ingredient', "UPDATE ingredent SET  ingredent_name = $1 where ingredent_id = $2  RETURNING *"),
   newIngredient: new PS('new-ingredient',"INSERT into ingredent (ingredent_name, ingredent_exist) VALUES ($1, true) RETURNING *"),
-  newReport: new PS('new-report', "SELECT * FROM bill WHERE bill_creatin_time >= $1 AND bill_creatin_time < $2 And CONCAT(bill_name_client, ' ', bill_lastname_client) ilike ($3) order by bill_creatin_time desc"),
+  newReport: new PS('new-report', "SELECT * FROM bill WHERE bill_creatin_time >= $1 AND bill_creatin_time < $2 order by bill_creatin_time desc"),
 
 
   newRecipe: new PS('new-recipe', "INSERT INTO recipe("+
@@ -17,7 +17,10 @@ let queries = {
   updateRecipe: new PS('update-recipe',"UPDATE recipe SET recipe_text = $2, recipe_title = $3, recipe_time_waiting = $4, recipe_price = $5, type_recipe_id = $6 WHERE recipe_id = $1"),
   deleteRecipe: new PS('delete-recipe',"DELETE FROM recipe WHERE recipe_id = $1"),
   addIngredentRecipe: new PS('add-ingredent-recipe',"INSERT INTO ingredent_recipe(recipe_id, ingredent_id, ingredent_measure) VALUES ($1, $2, $3);"),
-  newBill: new PS('new-bill','INSERT INTO bill (bill_mount,bill_facture_number,bill_name_client,bill_lastname_client,user_id) VALUES($1,$2,$3,$4,$5);')
+  newBill: new PS('new-bill','INSERT INTO bill (bill_mount,bill_facture_number,bill_name_client,bill_lastname_client,user_id) VALUES($1,$2,$3,$4,$5) RETURNING bill_id;'),
+  insertPlate: new PS('insert-plate','INSERT INTO plate (bill_id,recipe_id) VALUES ($1,$2);'),
+  deleteListPlate: new PS('delete-list-plate', 'DELETE FROM plate WHERE bill_id = $1'),
+  updateBill: new PS('update-bill','UPDATE bill SET bill_mount = $1, bill_facture_number = $2, bill_name_client = $3, bill_lastname_client = $4 WHERE bill_id = $5'),
 }
 
 

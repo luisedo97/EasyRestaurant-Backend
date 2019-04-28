@@ -33,15 +33,34 @@ router.put('',async (req,res) =>{
     }
 });
 
-router.delete('',async (req,res) =>{
-    const data = req.body;
+router.delete('/:id',async (req,res) =>{
+    const id = req.params.id;
     try{
-        await Recipe.deleteRecipe(data);
+        await Recipe.deleteRecipe(id);
         res.status(200).json({status: 200, message: 'Recipe delete succesfully'});
     }catch(error){
         res.status(500).json({status: 500, message: 'Error connection database'});
     }
 });
+
+router.get('/search/:name',async (req,res)=>{
+    try{
+        text = req.params.name + '%';
+        console.log(text);
+        listRecipe = await Recipe.getRecipeByText(text);
+        res.status(200).json({
+            status: 200,
+            message: 'Recipe list', 
+            data: listRecipe
+        });
+
+    }catch(error){
+        res.status(500).json({
+            status: 500, 
+            message: 'Error connection database'
+        });
+    }
+})
 
 
 module.exports = router;
