@@ -18,7 +18,7 @@ module.exports.newReport = (dateFrom, dateTo) => {
     });
 };
 
-module.exports.newBill = async (data) => {
+module.exports.newBill = async (data,user_id) => {
     try{
         //bill_mount,bill_facture_number,bill_name_client,bill_lastname_client,user_id
         Query = 'SELECT recipe_price FROM recipe WHERE';
@@ -41,7 +41,7 @@ module.exports.newBill = async (data) => {
         })
 
         
-        let {bill_id} = await db.one(sql.newBill,[mount,data.facture_number,data.name_client,data.lastname_client,4]); // Modificar el ultimo parametro
+        let {bill_id} = await db.one(sql.newBill,[mount,data.facture_number,data.name_client,data.lastname_client,user_id]); // Modificar el ultimo parametro
         
         data.list_plate.forEach(async recipe =>{
             await db.none(sql.insertPlate, [bill_id,recipe.recipe_id]);
@@ -65,8 +65,6 @@ module.exports.updateBill = async (data) =>{
             if(i + 1 != data.list_plate.length){
                 Query += ' OR ';
             }
-
-            //console.log(Query);
         }
 
         let listPrice = await db.many(Query);

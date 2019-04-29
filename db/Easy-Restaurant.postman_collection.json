@@ -22,7 +22,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\":\"luisedo97\",\n\t\"name\":\"Luis\",\n\t\"lastname\":\"Araujo\",\n\t\"password\":\"123\",\n\t\"type\":\"1\"\n}"
+					"raw": "{\n\t\"username\":\"contability\",\n\t\"name\":\"Elver\",\n\t\"lastname\":\"Galaraga\",\n\t\"password\":\"123\",\n\t\"type\":\"2\"\n}"
 				},
 				"url": {
 					"raw": "localhost:3001/register",
@@ -134,7 +134,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\":\"Sppaggethi con atuncito\",\n\t\"title\":\"Sppaggethi con atuncito\",\n\t\"time\":\"15min\",\n\t\"price\":200,\n\t\"type\":1,\n\t\"ingredents\":[{\"id\":3,\"measure\":\"250g\"},{\"id\":9,\"measure\":\"100g\"}]\n}"
+					"raw": "{\n\t\"text\":\"Tortas de chocolate\",\n\t\"title\":\"Torta chocolate\",\n\t\"time\":\"15min\",\n\t\"price\":150,\n\t\"type\":3,\n\t\"ingredents\":[\n\t\t{\n\t\t\t\"id\":7,\n\t\t\t\"measure\":\"200g\"\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3001/recipe",
@@ -145,6 +145,76 @@
 					"port": "3001",
 					"path": [
 						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Bill",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3VzZXJuYW1lIjoibHVpc2Vkbzk3IiwidXNlcl9wYXNzd29yZCI6IiQyYSQxMCRINE9nbzhESENOU1ZKcG1hV0I4d2kuLlY2b1FNbGNsdERxenVoaHhOc2o5MUJ5d3BMVVdtRyIsInVzZXJfbmFtZSI6Ikx1aXMiLCJ1c2VyX2xhc3RuYW1lIjoiQXJhdWpvIiwidXNlcl9jcmVhdGlvbl90aW1lIjoiMjAxOS0wNC0wNFQxNjowMzo1Mi43MDNaIiwidHlwZV91c2Vyc19pZCI6MSwiaWF0IjoxNTU2NTM2MzI1fQ.3_AtEDFlpD7wPrBe83Zork_wECBNZ8ouBDosdnnbSM0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name_client\":\"Maria\",\n\t\"lastname_client\":\"Conchafloja\",\n\t\"facture_number\":\"364774\",\n\t\"list_plate\":[\n\t\t{\n\t\t\t\"recipe_id\":3\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":5\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":5\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":4\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":7\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/bill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update bill",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bill_id\":4,\n\t\"name_client\":\"Manolo\",\n\t\"lastname_client\":\"Araujo\",\n\t\"facture_number\":\"36\",\n\t\"list_plate\":[\n\t\t{\n\t\t\t\"recipe_id\":3\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":5\n\t\t},\n\t\t{\n\t\t\t\"recipe_id\":5\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/bill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"bill"
 					]
 				}
 			},
@@ -211,7 +281,65 @@
 			"response": []
 		},
 		{
+			"name": "Delete bill",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/bill/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"bill",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Menu",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/menu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Menu Copy",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

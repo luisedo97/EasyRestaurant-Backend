@@ -1,12 +1,13 @@
 const express = require('express');
 let router = express.Router();
 const Report = require('../helpers/reportes');
+const auth = require('./../middlewares/jwtAuth');
 
-router.post('', async (req,res) =>{
+router.post('',auth, async (req,res) =>{
     const data = req.body;
     try{
         if(data.list_plate.length > 0){
-            let mount = await Report.newBill(data);
+            let mount = await Report.newBill(data, req.user.user_id);
             res.status(201).json({status: 201, message: 'Bill create', mount: mount});
         }else{
             res.status(401).json({status:401,message: 'Bill not create, list_plate.length == 0'});

@@ -21,6 +21,7 @@ let queries = {
   insertPlate: new PS('insert-plate','INSERT INTO plate (bill_id,recipe_id) VALUES ($1,$2);'),
   deleteListPlate: new PS('delete-list-plate', 'DELETE FROM plate WHERE bill_id = $1'),
   updateBill: new PS('update-bill','UPDATE bill SET bill_mount = $1, bill_facture_number = $2, bill_name_client = $3, bill_lastname_client = $4 WHERE bill_id = $5'),
+  deleteBill: new PS('delete-plate','DELETE FROM bill WHERE bill_id = $1'),
 }
 
 
