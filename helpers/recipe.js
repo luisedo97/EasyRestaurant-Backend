@@ -25,6 +25,7 @@ module.exports.insertRecipe = async d => {
     try{
         r = await db.one(sql.newRecipe,[d.text,d.title,d.time,d.price,d.type]);
         d.ingredents.forEach(async ingredent =>{
+            console.log(ingredent);
             await db.none(sql.addIngredentRecipe,[r.recipe_id,ingredent.id,ingredent.measure]);
         });
         return r.recipe_id;

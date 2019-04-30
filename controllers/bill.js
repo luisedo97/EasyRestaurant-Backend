@@ -3,6 +3,18 @@ let router = express.Router();
 const Report = require('../helpers/reportes');
 const auth = require('./../middlewares/jwtAuth');
 
+router.get('/:id',async(req,res) =>{
+    const id = req.params.id;
+    try{
+        data = await Report.getBill(id);
+        console.log(data)
+        res.status(200).json({status: 200, message: 'Get bill list', data:data});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({status: 500, message: 'Error connection database', error: error});
+    }
+});
+
 router.post('',auth, async (req,res) =>{
     const data = req.body;
     try{
@@ -13,7 +25,7 @@ router.post('',auth, async (req,res) =>{
             res.status(401).json({status:401,message: 'Bill not create, list_plate.length == 0'});
         }
     }catch(error){
-        res.status(500).json({status: 500, message: 'Error connection database'});
+        res.status(500).json({status: 500, message: 'Error connection database', error: error});
     }
 });
 

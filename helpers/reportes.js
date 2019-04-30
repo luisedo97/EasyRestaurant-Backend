@@ -1,6 +1,23 @@
 const db = require('./db');
 const sql = require('./queries.js');
 
+module.exports.getBill = async (id) => {
+    try{
+        let bill = await db.oneOrNone(sql.getBill,id);
+        console.log(bill);
+        if(bill){
+            let list_plate = await db.any(sql.getListPlate,id);
+            return {bill:bill, list_plate:list_plate};    
+        }else{
+            throw error('No exist bill');
+        }
+    }catch(error){
+        console.log(error);
+    }
+    
+    
+}
+
 module.exports.newReport = (dateFrom, dateTo) => {
     return new Promise((res, rej) => {
         db.connect().then((obj) => {
