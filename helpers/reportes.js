@@ -18,10 +18,10 @@ module.exports.getBill = async (id) => {
     
 }
 
-module.exports.newReport = (dateFrom, dateTo) => {
+module.exports.newReport = (dateFrom, dateTo, name) => {
     return new Promise((res, rej) => {
         db.connect().then((obj) => {
-            obj.any(sql.newReport, [dateFrom, dateTo]).then((data) => {
+            obj.any(sql.newReport, [dateFrom, dateTo, `%${name}%`]).then((data) => {
                 res(data);
                 obj.done();
             }).catch((error) => {

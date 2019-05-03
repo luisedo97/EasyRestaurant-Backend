@@ -8,8 +8,7 @@ let queries = {
   getIngredients: new PS('get-ingredients', "SELECT * FROM ingredent"),
   updateIngredient: new PS('update-ingredient', "UPDATE ingredent SET  ingredent_name = $1 where ingredent_id = $2  RETURNING *"),
   newIngredient: new PS('new-ingredient',"INSERT into ingredent (ingredent_name, ingredent_exist) VALUES ($1, true) RETURNING *"),
-  newReport: new PS('new-report', "SELECT * FROM bill WHERE bill_creatin_time >= $1 AND bill_creatin_time < $2 order by bill_creatin_time desc"),
-
+  newReport: new PS('new-report', "SELECT * FROM bill WHERE bill_creatin_time >= $1 AND bill_creatin_time < $2 And CONCAT(bill_name_client, ' ', bill_lastname_client) ilike ($3) order by bill_creatin_time desc"),
 
   newRecipe: new PS('new-recipe', "INSERT INTO recipe("+
     "recipe_text, recipe_url, recipe_title, recipe_time_waiting, recipe_price, type_recipe_id)"+
